@@ -36,8 +36,8 @@ if(is_single()):
 		$citationKeywords = str_replace('[:]','',$citationKeywords);
 	endif;
 
-// Retrieve the authors (adjust custom field or function to retrieve the array of authors correctly, e.g. for CoAuthors Plus get_coauthors())
-	$citationAuthors = get_field('authors');
+// Retrieve the authors (adjust custom field or function to retrieve the array of authors correctly)
+	$citationAuthors = get_coauthors();
 
 // Retrieve DOI if it exists (adjust custom field (get_field('doi')) if necessary)
 	$doi = get_field('doi');
@@ -68,9 +68,9 @@ if(is_single()):
 	<meta name="citation_fulltext_html_url" content="<?php echo $citationFulltextHtmlUrl ?>">
 	<meta name="citation_keywords" content="<?php echo $citationKeywords; ?>">
 <?php foreach($citationAuthors as $author ): 
-	// Adjust "name" if necessary, e.g. for CoAuthors Plus: display_name 
+	// Adjust "display_name" if necessary 
 	?>
-	<meta name="citation_author" content="<?php echo $author->name; ?>">	
+	<meta name="citation_author" content="<?php echo $author->display_name; ?>">	
 <?php endforeach; ?>		
 <?php if($doi): ?>	
 	<meta name="citation_doi" content="<?php echo $doi; ?>">
@@ -88,9 +88,9 @@ if(is_single()):
 	<meta name="DC.source" content="<?php echo $citationFulltextHtmlUrl ?>">
 	<meta name="DC.subject" content="<?php echo $citationKeywords; ?>">
 <?php foreach($citationAuthors as $author ): 
-	// Adjust "name" if necessary, e.g. for CoAuthors Plus: display_name 
+	// Adjust "display_name" if necessary 
 	?>
-	<meta name="DC.creator" content="<?php echo $author->name; ?>">	
+	<meta name="DC.creator" content="<?php echo $author->display_name; ?>">	
 <?php endforeach; ?>		
 <?php if($doi): ?>	
 	<meta name="DC.identifier" content="https://doi.org/<?php echo $doi; ?>">
