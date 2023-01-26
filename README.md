@@ -1,7 +1,7 @@
 # citationMeta for Wordpress
 This repository contains a function to improve the quality of the metadata shown in the website’s HTML head of a Wordpress blog.
 
-Such improvement is of particular importance for scientific blogs. The additional metadata is displayed as [Highwire Press tags](https://www.zotero.org/support/dev/exposing_metadata#using_an_open_standard_for_exposing_metadata) (inter alia [recommend by Google Scholar](https://scholar.google.com/intl/en/scholar/inclusion.html#indexing) as well as the [Dublin Core tags](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/). When used, common reference management software, such as Zotero, can easily import the articles.
+Such improvement is of particular importance for scientific blogs. The additional metadata is displayed as [Highwire Press tags](https://www.zotero.org/support/dev/exposing_metadata#using_an_open_standard_for_exposing_metadata) (inter alia [recommend by Google Scholar](https://scholar.google.com/intl/en/scholar/inclusion.html#indexing)) as well as the [Dublin Core tags](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/). When used, common reference management software, such as Zotero, can easily import the articles.
 
 ## How to use
 
