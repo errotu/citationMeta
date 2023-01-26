@@ -7,6 +7,8 @@ Such improvement is of particular importance for scientific blogs. The additiona
 
 Simply add the code of the citationMeta.php to the bottom of your Wordpress theme’s functions.php (without the leading “<?php”).
 
-Please be aware that the code probably needs to be adjusted concerning the output of authors. As Wordpress allows only one author per post, there are many different solutions in the wild on how to add the possibility of having multiple authors per post. The current code is working with the popular [CoAuthors Plus plugin](https://wordpress.org/plugins/co-authors-plus/).
+Please be aware that the code probably needs to be adjusted concerning the output of authors (look for $citationAuthors and 'display_name'). As Wordpress allows only one author per post, there are many different solutions in the wild on how to add the possibility of having multiple authors per post. The current code should work with the popular [CoAuthors Plus plugin](https://wordpress.org/plugins/co-authors-plus/).
 
 Also, the code was created for blogs cooperating with the [intr2dok service](https://intr2dok.vifa-recht.de). To provide a PDF, it retrieves the link of the PDF created by intr2dok. If you’re not cooperating with intr2dok, the code shouldn’t throw out any errors, but will – of course – not be able to provide any PDF.
+
+Other custom fields which possibly need to be adjusted are 'subline' (for the subtitle - if you are using one) and 'doi' (if you have a custom field containing a DOI).
