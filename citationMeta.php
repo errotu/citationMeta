@@ -24,9 +24,10 @@ if(is_single()):
 	$citationFulltextHtmlUrl = get_permalink();
 	
 // Get the tags of the post	
-	$citationKeywords = get_the_tags();
-	if ($citationKeywords) :
-  		foreach($citationKeywords as $tag) {			
+	$tags = get_the_tags();
+	$citationKeywords = '';
+	if ($tags) :
+  		foreach($tags as $tag) {			
 			$citationKeywords = $tag->name  . '; ' . $citationKeywords; 
   		}
 	
