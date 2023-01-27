@@ -48,6 +48,7 @@ if(is_single()):
 		$doiJSON = file_get_contents('https://dx.doi.org/api/handles/'.$doi);
 		$doiData = json_decode($doiJSON, true);
 		$intr2dokURL = $doiData['values'][1]['data']['value'];
+		$intr2dokPDFurl = '';
 		
 		// Check if DOI links to intr2dok
 		if (str_contains($intr2dokURL, 'https://intr2dok.vifa-recht.de/receive/')) :
@@ -72,13 +73,13 @@ if(is_single()):
 	// Adjust "display_name" if necessary 
 	?>
 	<meta name="citation_author" content="<?php echo $author->display_name; ?>">	
-<?php endforeach; ?>		
+<?php endforeach; ?>	
 <?php if($doi): ?>	
 	<meta name="citation_doi" content="<?php echo $doi; ?>">
-<?php endif; ?>	
-<?php if($intr2dokPDFurl): ?>	
+	<?php if($intr2dokPDFurl): ?>	
 	<meta name="citation_pdf_url" content="<?php echo $intr2dokPDFurl; ?>">
-<?php endif; ?>
+	<?php endif; 
+endif; ?>
 
 <!-- Meta Data for Reference Managers: Dublin Core tags -->
 	<meta name="DC.type" content="blogPost">
@@ -95,9 +96,10 @@ if(is_single()):
 <?php endforeach; ?>		
 <?php if($doi): ?>	
 	<meta name="DC.identifier" content="https://doi.org/<?php echo $doi; ?>">
-<?php endif; ?>	
-<?php if($intr2dokPDFurl): ?>	
+	<?php if($intr2dokPDFurl): ?>	
 	<meta name="DC.identifier" content="<?php echo $intr2dokPDFurl; ?>">
-<?php endif;
+	<?php endif;
+endif;
+	
 endif;
 }
