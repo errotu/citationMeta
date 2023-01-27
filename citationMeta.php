@@ -69,11 +69,13 @@ if(is_single()):
 	<meta name="citation_journal_title" content="<?php echo $citationJournalTitle ?>">
 	<meta name="citation_fulltext_html_url" content="<?php echo $citationFulltextHtmlUrl ?>">
 	<meta name="citation_keywords" content="<?php echo $citationKeywords; ?>">
-<?php foreach($citationAuthors as $author ): 
+<?php if($citationAuthors) :
+foreach($citationAuthors as $author ):  
 	// Adjust "display_name" if necessary 
 	?>
 	<meta name="citation_author" content="<?php echo $author->display_name; ?>">	
-<?php endforeach; ?>	
+<?php endforeach;
+endif; ?>		
 <?php if($doi): ?>	
 	<meta name="citation_doi" content="<?php echo $doi; ?>">
 	<?php if($intr2dokPDFurl): ?>	
@@ -89,11 +91,13 @@ endif; ?>
 	<meta name="DC.source" content="<?php echo $citationJournalTitle ?>">
 	<meta name="DC.source" content="<?php echo $citationFulltextHtmlUrl ?>">
 	<meta name="DC.subject" content="<?php echo $citationKeywords; ?>">
-<?php foreach($citationAuthors as $author ): 
+<?php if($citationAuthors) :
+foreach($citationAuthors as $author ):  
 	// Adjust "display_name" if necessary 
 	?>
 	<meta name="DC.creator" content="<?php echo $author->display_name; ?>">	
-<?php endforeach; ?>		
+<?php endforeach;
+endif; ?>		
 <?php if($doi): ?>	
 	<meta name="DC.identifier" content="https://doi.org/<?php echo $doi; ?>">
 	<?php if($intr2dokPDFurl): ?>	
