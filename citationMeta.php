@@ -9,7 +9,7 @@ function citationMeta(){
 if(is_single()):
 
 // Add possible subtitle to the title (adjust custom field (get_field('subline')) if necessary)
-	$subTitle = get_field('subline');	
+	$subTitle = get_field('subheadline');	
 	$citationTitle = get_the_title();
 	if($subTitle) :
 		$citationTitle = $citationTitle . ': ' . $subTitle;
