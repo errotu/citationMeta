@@ -51,6 +51,7 @@ if(is_single()):
 		if($doiJSON == false) {
 			$doiValid = false; }
 		else {
+			$doiValid = true;
 			$doiData = json_decode($doiJSON, true);			
 			$intr2dokURL = $doiData['values'][1]['data']['value'];		
 			// Check if DOI links to intr2dok
