@@ -8,7 +8,7 @@ function citationMeta(){
 // Code is only executed on posts, not pages
 if(is_single()):
 
-// Add possible subtitle to the title (adjust custom field (get_field('subline')) if necessary)
+// Add possible subtitle to the title (adjust custom field (get_field('subheadline')) if necessary)
 	$subTitle = get_field('subheadline');	
 	$citationTitle = get_the_title();
 	if($subTitle) :
