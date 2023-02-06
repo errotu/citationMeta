@@ -42,15 +42,14 @@ if(is_single()):
 
 // Retrieve DOI if it exists (adjust custom field (get_field('doi')) if necessary)
 	$doi = get_field('doi');
+	$doiValid = false;
 
 // Retrieve the PDF by intr2dok if cooperation exists	
 	if($doi) :
 		$intr2dokPDFurl = '';
 		$doiJSON = @file_get_contents('https://dx.doi.org/api/handles/'.$doi);
 		// Check if DOI is valid
-		if($doiJSON == false) {
-			$doiValid = false; }
-		else {
+		if(!$doiJSON == false) {
 			$doiValid = true;
 			$doiData = json_decode($doiJSON, true);			
 			$intr2dokURL = $doiData['values'][1]['data']['value'];		
