@@ -55,11 +55,14 @@ if(is_single()):
 			$intr2dokURL = $doiData['values'][1]['data']['value'];		
 			// Check if DOI links to intr2dok
 			if (str_contains($intr2dokURL, 'https://intr2dok.vifa-recht.de/receive/')) :
-				$intr2dokID = str_replace('https://intr2dok.vifa-recht.de/receive/', '', $intr2dokURL);
-				$intr2dokXML = simplexml_load_file('https://intr2dok.vifa-recht.de/api/v2/objects/'.$intr2dokID.'/derivates');
-				$intr2dokPDFtitle = $intr2dokXML->derobject->maindoc[0];
-				$intr2dokPDFid =  $intr2dokXML->derobject->attributes('http://www.w3.org/1999/xlink')['href'];
-				$intr2dokPDFurl = 'https://intr2dok.vifa-recht.de/servlets/MCRFileNodeServlet/'.$intr2dokPDFid.'/'.$intr2dokPDFtitle;
+				$intr2dokID = str_replace('https://intr2dok.vifa-recht.de/receive/', '', $intr2dokURL);				
+				$intr2dokXML = @simplexml_load_file('https://intr2dok.vifa-recht.de/api/v2/objects/'.$intr2dokID.'/derivates');
+				// Check if intr2dok returns content
+				if(!$intr2dokXML == false) {
+					$intr2dokPDFtitle = $intr2dokXML->derobject->maindoc[0];
+					$intr2dokPDFid =  $intr2dokXML->derobject->attributes('http://www.w3.org/1999/xlink')['href'];
+					$intr2dokPDFurl = 'https://intr2dok.vifa-recht.de/servlets/MCRFileNodeServlet/'.$intr2dokPDFid.'/'.$intr2dokPDFtitle;
+				}
 			endif;	
 		}
 	endif;
