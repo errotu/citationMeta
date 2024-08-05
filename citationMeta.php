@@ -82,8 +82,8 @@ foreach($citationAuthors as $author ):
 	?>
 	<meta name="citation_author" content="<?php echo $author->display_name; ?>">	
 <?php endforeach;
-endif; ?>		
-<?php if($doiValid): ?>	
+endif; ?>
+<?php if($doiValid): ?>
 	<meta name="citation_doi" content="<?php echo $doi; ?>">
 	<?php if($intr2dokPDFurl): ?>	
 	<meta name="citation_pdf_url" content="<?php echo $intr2dokPDFurl; ?>">
@@ -104,13 +104,15 @@ foreach($citationAuthors as $author ):
 	?>
 	<meta name="DC.creator" content="<?php echo $author->display_name; ?>">	
 <?php endforeach;
-endif; ?>		
-<?php if($doiValid): ?>	
+endif; ?>
+<?php if($doiValid): ?>
 	<meta name="DC.identifier" content="https://doi.org/<?php echo $doi; ?>">
-	<?php if($intr2dokPDFurl): ?>	
+	<?php if($intr2dokPDFurl): ?>
 	<meta name="DC.identifier" content="<?php echo $intr2dokPDFurl; ?>">
 	<?php endif;
 endif;
 	
 endif;
 }
+
+
