@@ -44,24 +44,24 @@ if(is_single()):
 	$doi = get_field('doi');
 	$doiValid = false;
 
-// Retrieve the PDF by intr2dok if cooperation exists	
+// Retrieve the PDF by intRechtDok if cooperation exists	
 	if($doi) :
-		$intr2dokPDFurl = '';
+		$intRechtDokPDFurl = '';
 		$doiJSON = @file_get_contents('https://dx.doi.org/api/handles/'.$doi);
 		// Check if DOI is valid
 		if(!$doiJSON == false) {
 			$doiValid = true;
 			$doiData = json_decode($doiJSON, true);			
-			$intr2dokURL = $doiData['values'][1]['data']['value'];		
-			// Check if DOI links to intr2dok
-			if (str_contains($intr2dokURL, 'https://intr2dok.vifa-recht.de/receive/')) :
-				$intr2dokID = str_replace('https://intr2dok.vifa-recht.de/receive/', '', $intr2dokURL);				
-				$intr2dokXML = @simplexml_load_file('https://intr2dok.vifa-recht.de/api/v2/objects/'.$intr2dokID.'/derivates');
-				// Check if intr2dok returns content
-				if(!$intr2dokXML == false) {
-					$intr2dokPDFtitle = $intr2dokXML->derobject->maindoc[0];
-					$intr2dokPDFid =  $intr2dokXML->derobject->attributes('http://www.w3.org/1999/xlink')['href'];
-					$intr2dokPDFurl = 'https://intr2dok.vifa-recht.de/servlets/MCRFileNodeServlet/'.$intr2dokPDFid.'/'.$intr2dokPDFtitle;
+			$intRechtDokURL = $doiData['values'][1]['data']['value'];		
+			// Check if DOI links to intRechtDok
+			if (str_contains($intRechtDokURL, 'https://intrechtdok.de/receive/')) :
+				$intRechtDokID = str_replace('https://intrechtdok.de/receive/', '', $intRechtDokURL);				
+				$intRechtDokXML = @simplexml_load_file('https://intrechtdok.de/api/v2/objects/'.$intRechtDokID.'/derivates');
+				// Check if intRechtDok returns content
+				if(!$intRechtDokXML == false) {
+					$intRechtDokPDFtitle = $intRechtDokXML->derobject->maindoc[0];
+					$intRechtDokPDFid =  $intRechtDokXML->derobject->attributes('http://www.w3.org/1999/xlink')['href'];
+					$intRechtDokPDFurl = 'https://intrechtdok.de/servlets/MCRFileNodeServlet/'.$intRechtDokPDFid.'/'.$intRechtDokPDFtitle;
 				}
 			endif;	
 		}
@@ -85,8 +85,8 @@ foreach($citationAuthors as $author ):
 endif; ?>
 <?php if($doiValid): ?>
 	<meta name="citation_doi" content="<?php echo $doi; ?>">
-	<?php if($intr2dokPDFurl): ?>	
-	<meta name="citation_pdf_url" content="<?php echo $intr2dokPDFurl; ?>">
+	<?php if($intRechtDokPDFurl): ?>	
+	<meta name="citation_pdf_url" content="<?php echo $intRechtDokPDFurl; ?>">
 	<?php endif; 
 endif; ?>
 
@@ -107,8 +107,8 @@ foreach($citationAuthors as $author ):
 endif; ?>
 <?php if($doiValid): ?>
 	<meta name="DC.identifier" content="https://doi.org/<?php echo $doi; ?>">
-	<?php if($intr2dokPDFurl): ?>
-	<meta name="DC.identifier" content="<?php echo $intr2dokPDFurl; ?>">
+	<?php if($intRechtDokPDFurl): ?>
+	<meta name="DC.identifier" content="<?php echo $intRechtDokPDFurl; ?>">
 	<?php endif;
 endif;
 	
