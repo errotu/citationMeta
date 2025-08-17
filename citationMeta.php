@@ -55,15 +55,16 @@ if(is_single()):
 			$intRechtDokURL = $doiData['values'][1]['data']['value'];		
 			// Check if DOI links to intRechtDok
 			if (str_contains($intRechtDokURL, 'https://intrechtdok.de/receive/')) :
-				$intRechtDokID = str_replace('https://intrechtdok.de/receive/', '', $intRechtDokURL);				
-				$intRechtDokXML = @simplexml_load_file('https://intrechtdok.de/api/v2/objects/'.$intRechtDokID.'/derivates');
+				$intRechtDokID = str_replace('https://intrechtdok.de/receive/', '', $intRechtDokURL);
+				$intRechtDokJSON = file_get_contents('https://intrechtdok.de/api/v2/objects/'.$intRechtDokID.'/derivates.json');
+				$intRechtDokData = json_decode($intRechtDokJSON, true);
 				// Check if intRechtDok returns content
-				if(!$intRechtDokXML == false) {
-					$intRechtDokPDFtitle = $intRechtDokXML->derobject->maindoc[0];
-					$intRechtDokPDFid =  $intRechtDokXML->derobject->attributes('http://www.w3.org/1999/xlink')['href'];
+				if(!$intRechtDokData == false) {
+					$intRechtDokPDFtitle = $intRechtDokData[0]['maindoc'];
+					$intRechtDokPDFid =  $intRechtDokData[0]['href'];
 					$intRechtDokPDFurl = 'https://intrechtdok.de/servlets/MCRFileNodeServlet/'.$intRechtDokPDFid.'/'.$intRechtDokPDFtitle;
 				}
-			endif;	
+			endif;
 		}
 	endif;
 ?>
